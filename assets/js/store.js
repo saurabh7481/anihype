@@ -4,8 +4,6 @@ if (document.readyState == 'loading') {
     ready()
 }
 
-
-
 function ready() {
     const cartRemoveButton = document.getElementsByClassName("btn-remove");
     for(let i=0; i<cartRemoveButton.length; i++){
@@ -21,9 +19,19 @@ function ready() {
 
     const addToCartButtons = document.getElementsByClassName('add-cart-btn')
     for (let i = 0; i < addToCartButtons.length; i++) {
-        var button = addToCartButtons[i]
+        const button = addToCartButtons[i]
         button.addEventListener('click', addToCart)
     }
+
+    const sideCart = document.getElementsByClassName("cart-holder")
+    sideCart[0].addEventListener("click", (e) => {
+        document.querySelector("#cart").style = "display: block; z-index: 999;"
+    })
+
+    const cancelCart = document.getElementsByClassName("cancel")
+    cancelCart[0].addEventListener("click", () => {
+        document.querySelector("#cart").style = "display: none"
+    })
 }
 
 function addToCart(e) {
