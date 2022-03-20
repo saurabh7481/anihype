@@ -1,36 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
     <title>AniHype</title>
-
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
+      integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <script src="assets/js/store.js" async></script>
   </head>
 
   <body>
     <header class="">
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <a class="navbar-brand" href="index.html"><h2>ANI <em>HYPE</em></h2></a>
+          <a class="navbar-brand" href="index.html"
+            ><h2>ANI <em>HYPE</em></h2></a
+          >
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item active">
                 <a class="nav-link" href="index.html">Home</a>
-              </li> 
+              </li>
               <li class="nav-item">
-                <a class="nav-link" href="products.html">Merch</a>
+                <a class="nav-link" href="products.html">Collections</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="about.html">About Us</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contact.html">Your Cart</a>
+                <a class="nav-link" href="#cart">Your Cart</a>
               </li>
             </ul>
           </div>
@@ -57,113 +76,96 @@
           <div class="col-md-12">
             <div class="section-heading">
               <h2>Latest Anime</h2>
-              <a href="products.html">View all anime<i class="fa fa-angle-right"></i></a>
+              <a href="products.html"
+                >View all anime<i class="fa fa-angle-right"></i
+              ></a>
             </div>
           </div>
           <div class="col-md-4">
             <div class="product-item">
-              <a href="#"><img src="assets/images/product_01.jpg" alt=""></a>
+              <img class="item-img" src="assets/images/product_01.jpg" alt="" />
               <div class="down-content">
-                <a href="#"><h4>Demon Slayer</h4></a>
-                <h6>$25.75</h6>
-                <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
-                <ul class="stars">
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                </ul>
+                <h4 class="item-title">Demon Slayer</h4>
+                <h6 class="item-price">$25.75</h6>
+                <p>
+                  Lorem ipsume dolor sit amet, adipisicing elite. Itaque,
+                  corporis nulla aspernatur.
+                </p>
+                <button class="btn btn-outline-success add-cart-btn">Add to Cart</button>
                 <span>Reviews (24)</span>
               </div>
             </div>
           </div>
           <div class="col-md-4">
             <div class="product-item">
-              <a href="#"><img src="assets/images/product_02.jpg" alt=""></a>
+              <img class="item-img" src="assets/images/product_02.jpg" alt="" />
               <div class="down-content">
-                <a href="#"><h4>Attack on Titan</h4></a>
-                <h6>$30.25</h6>
-                <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
-                <ul class="stars">
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                </ul>
+                <h4 class="item-title">Attack on Titan</h4>
+                <h6 class="item-price">$30.25</h6>
+                <p>
+                  Lorem ipsume dolor sit amet, adipisicing elite. Itaque,
+                  corporis nulla aspernatur.
+                </p>
+                <button class="btn btn-outline-success add-cart-btn">Add to Cart</button>
                 <span>Reviews (21)</span>
               </div>
             </div>
           </div>
           <div class="col-md-4">
             <div class="product-item">
-              <a href="#"><img src="assets/images/product_03.jpg" alt=""></a>
+              <img class="item-img" src="assets/images/product_03.jpg" alt="" />
               <div class="down-content">
-                <a href="#"><h4>Code Geass</h4></a>
-                <h6>$20.45</h6>
-                <p>Sixteen Clothing is free CSS template provided by TemplateMo.</p>
-                <ul class="stars">
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                </ul>
+                <h4 class="item-title">Code Geass</h4>
+                <h6 class="item-price">$20.45</h6>
+                <p>
+                  Sixteen Clothing is free CSS template provided by TemplateMo.
+                </p>
+                <button class="btn btn-outline-success add-cart-btn">Add to Cart</button>
                 <span>Reviews (36)</span>
               </div>
             </div>
           </div>
           <div class="col-md-4">
             <div class="product-item">
-              <a href="#"><img src="assets/images/product_04.jpg" alt=""></a>
+              <img class="item-img" src="assets/images/product_04.jpg" alt="" />
               <div class="down-content">
-                <a href="#"><h4>Black Clover</h4></a>
-                <h6>$15.25</h6>
-                <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
-                <ul class="stars">
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                </ul>
+                <h4 class="item-title">Black Clover</h4>
+                <h6 class="item-price">$15.25</h6>
+                <p>
+                  Lorem ipsume dolor sit amet, adipisicing elite. Itaque,
+                  corporis nulla aspernatur.
+                </p>
+                <button class="btn btn-outline-success add-cart-btn">Add to Cart</button>
                 <span>Reviews (48)</span>
               </div>
             </div>
           </div>
           <div class="col-md-4">
             <div class="product-item">
-              <a href="#"><img src="assets/images/product_05.jpg" alt=""></a>
+              <img class="item-img" src="assets/images/product_05.jpg" alt="" />
               <div class="down-content">
-                <a href="#"><h4>Jujutsu Kaisen</h4></a>
-                <h6>$12.50</h6>
-                <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
-                <ul class="stars">
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                </ul>
+                <h4 class="item-title">Jujutsu Kaisen</h4>
+                <h6 class="item-price">$12.50</h6>
+                <p>
+                  Lorem ipsume dolor sit amet, adipisicing elite. Itaque,
+                  corporis nulla aspernatur.
+                </p>
+                <button class="btn btn-outline-success add-cart-btn">Add to Cart</button>
                 <span>Reviews (16)</span>
               </div>
             </div>
           </div>
           <div class="col-md-4">
             <div class="product-item">
-              <a href="#"><img src="assets/images/product_06.jpg" alt=""></a>
+              <img class="item-img" src="assets/images/product_06.jpg" alt="" />
               <div class="down-content">
-                <a href="#"><h4>Steins Gate</h4></a>
-                <h6>$22.50</h6>
-                <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
-                <ul class="stars">
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                </ul>
+                <h4 class="item-title">Steins Gate</h4>
+                <h6 class="item-price">$22.50</h6>
+                <p>
+                  Lorem ipsume dolor sit amet, adipisicing elite. Itaque,
+                  corporis nulla aspernatur.
+                </p>
+                <button class="btn btn-outline-success add-cart-btn">Add to Cart</button>
                 <span>Reviews (32)</span>
               </div>
             </div>
@@ -172,18 +174,32 @@
       </div>
     </div>
 
+    <section class="container content-section" id="cart">
+      <h2 class="section-header">CART</h2>
+      <div class="cart-row">
+        <span class="cart-item cart-header cart-column">ITEM</span>
+        <span class="cart-price cart-header cart-column">PRICE</span>
+        <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+      </div>
+      <div class="cart-items">
+      </div>
+      <div class="cart-total">
+        <strong class="cart-total-title">Total</strong>
+        <span class="cart-total-price">$0</span>
+      </div>
+      <button class="btn btn-primary btn-lg" type="button">PURCHASE</button>
+    </section>
+
     <footer>
       <div class="container">
         <div class="row">
           <div class="col-md-12">
             <div class="inner-content">
-              <p>Copyright &copy; 2022 Ani Hype Co., Ltd.
+              <p>Copyright &copy; 2022 Ani Hype Co., Ltd.</p>
             </div>
           </div>
         </div>
       </div>
     </footer>
-
   </body>
-
 </html>
