@@ -64,16 +64,45 @@ function ready() {
 }
 
 function addToCart(e) {
-  console.log("add to cart");
-  const button = e.target;
-  const Item = button.parentElement.parentElement;
-  const imageSrc = Item.getElementsByClassName("item-img")[0].src;
+  const notify = new Notify();
+  const id = e.target.parentNode.parentNode.id.split("-")[1];
+  console.log(id);
+  axios.post("http://localhost:3000/cart", {productId: id}).then((data) => {
+    if(data.status === 200){
+        notify.render({
+            head: "Success",
+            content: "Product is added to cart",
+            style: "success",
+            delay: 2000,
+            corner: "bottom_right"
+        })
+    } else {
+        notify.render({
+            head: "Info",
+            content: "An error occured",
+            style: "danger",
+            delay: 2000,
+            corner: "bottom_right"
+        })
+    }
+  })
+  .catch(err => {
+    notify.render({
+        head: "Info",
+        content: "An error occured",
+        style: "danger",
+        delay: 2000,
+        corner: "bottom_right"
+    })
+  })
+//   const Item = button.parentElement.parentElement;
+//   const imageSrc = Item.getElementsByClassName("item-img")[0].src;
 
-  const itemInfo = button.parentElement;
-  const title = itemInfo.getElementsByClassName("item-title")[0].innerText;
-  const price = itemInfo.getElementsByClassName("item-price")[0].innerText;
-  addItemToCart(title, price, imageSrc);
-  updateCartTotal();
+//   const itemInfo = button.parentElement;
+//   const title = itemInfo.getElementsByClassName("item-title")[0].innerText;
+//   const price = itemInfo.getElementsByClassName("item-price")[0].innerText;
+//   addItemToCart(title, price, imageSrc);
+//   updateCartTotal();
 }
 
 function addItemToCart(title, price, imgSrc) {

@@ -45,11 +45,11 @@ exports.getCart = (req, res, next) => {
       return cart
         .getProducts()
         .then(products => {
-          res.render('shop/cart', {
-            path: '/cart',
-            pageTitle: 'Your Cart',
-            products: products
-          });
+          // res.render('shop/cart', {
+          //   path: '/cart',
+          //   pageTitle: 'Your Cart',
+          //   products: products
+          // });
         })
         .catch(err => console.log(err));
     })
@@ -85,9 +85,11 @@ exports.postCart = (req, res, next) => {
       });
     })
     .then(() => {
-      res.redirect('/cart');
+      res.status(200).send({message: "Success"})
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      res.status(500);
+    });
 };
 
 exports.postCartDeleteProduct = (req, res, next) => {
