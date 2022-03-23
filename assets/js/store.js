@@ -54,7 +54,16 @@ function ready() {
 
   const sideCart = document.getElementsByClassName("cart-holder");
   sideCart[0].addEventListener("click", (e) => {
-    document.querySelector("#cart").style = "display: block; z-index: 999;";
+    axios
+      .get("http://localhost:3000/cart")
+      .then((data) => {
+        console.log(data.data);  
+        addItemToCart(data.data);
+        document.querySelector("#cart").style = "display: block; z-index: 999;";
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   });
 
   const cancelCart = document.getElementsByClassName("cancel");
@@ -67,74 +76,73 @@ function addToCart(e) {
   const notify = new Notify();
   const id = e.target.parentNode.parentNode.id.split("-")[1];
   console.log(id);
-  axios.post("http://localhost:3000/cart", {productId: id}).then((data) => {
-    if(data.status === 200){
+  axios
+    .post("http://localhost:3000/cart", { productId: id })
+    .then((data) => {
+      if (data.status === 200) {
         notify.render({
-            head: "Success",
-            content: "Product is added to cart",
-            style: "success",
-            delay: 2000,
-            corner: "bottom_right"
-        })
-    } else {
+          head: "Success",
+          content: "Product is added to cart",
+          style: "success",
+          delay: 2000,
+          corner: "bottom_right",
+        });
+      } else {
         notify.render({
-            head: "Info",
-            content: "An error occured",
-            style: "danger",
-            delay: 2000,
-            corner: "bottom_right"
-        })
-    }
-  })
-  .catch(err => {
-    notify.render({
+          head: "Info",
+          content: "An error occured",
+          style: "danger",
+          delay: 2000,
+          corner: "bottom_right",
+        });
+      }
+    })
+    .catch((err) => {
+      notify.render({
         head: "Info",
         content: "An error occured",
         style: "danger",
         delay: 2000,
-        corner: "bottom_right"
-    })
-  })
-//   const Item = button.parentElement.parentElement;
-//   const imageSrc = Item.getElementsByClassName("item-img")[0].src;
+        corner: "bottom_right",
+      });
+    });
+  //   const Item = button.parentElement.parentElement;
+  //   const imageSrc = Item.getElementsByClassName("item-img")[0].src;
 
-//   const itemInfo = button.parentElement;
-//   const title = itemInfo.getElementsByClassName("item-title")[0].innerText;
-//   const price = itemInfo.getElementsByClassName("item-price")[0].innerText;
-//   addItemToCart(title, price, imageSrc);
-//   updateCartTotal();
+  //   const itemInfo = button.parentElement;
+  //   const title = itemInfo.getElementsByClassName("item-title")[0].innerText;
+  //   const price = itemInfo.getElementsByClassName("item-price")[0].innerText;
+  //   addItemToCart(title, price, imageSrc);
+  //   updateCartTotal();
 }
 
-function addItemToCart(title, price, imgSrc) {
-  const cartRow = document.createElement("div");
-  cartRow.classList.add("cart-row");
+function addItemToCart(data) {
   const cartItems = document.getElementsByClassName("cart-items")[0];
-  const cartItemNames = cartItems.getElementsByClassName("cart-item-title");
-  for (let i = 0; i < cartItemNames.length; i++) {
-    if (cartItemNames[i].innerText == title) {
-      alert("You have already added this item in your cart.");
-      return;
-    }
-  }
-  const cartRowContents = `
-        <div class="cart-item cart-column">
-            <img class="cart-item-image" src="${imgSrc}" width="100" height="100">
-            <span class="cart-item-title">${title}</span>
-        </div>
-        <span class="cart-price cart-column">${price}</span>
-        <div class="cart-quantity cart-column">
-            <input class="cart-quantity-input" type="number" value="1">
-            <button class="btn btn-danger btn-remove" type="button">REMOVE</button>
-        </div>`;
-  cartRow.innerHTML = cartRowContents;
-  cartItems.append(cartRow);
-  cartRow
-    .getElementsByClassName("btn-remove")[0]
-    .addEventListener("click", removeCartItem);
-  cartRow
-    .getElementsByClassName("cart-quantity-input")[0]
-    .addEventListener("change", quantityChanged);
-  alert("Added to cart!");
+  cartItems.innerHTML = "";
+  data.products.forEach((product) => {
+    console.log(product);
+    const cartRow = document.createElement("div");
+    cartRow.classList.add("cart-row");  
+    const cartRowContents = `
+    <div class="cart-item cart-column">
+        <img class="cart-item-image" src="${product.imageUrl}" width="100" height="100">
+        <span class="cart-item-title">${product.title}</span>
+    </div>
+    <span class="cart-price cart-column">${product.price}</span>
+    <div class="cart-quantity cart-column">
+        <input class="cart-quantity-input" type="number" value="${product.cartItem.quantity}">
+        <button class="btn btn-danger btn-remove" type="button">REMOVE</button>
+    </div>`;
+    cartRow.innerHTML = cartRowContents;
+    cartItems.append(cartRow);
+    cartRow
+      .getElementsByClassName("btn-remove")[0]
+      .addEventListener("click", removeCartItem);
+    cartRow
+      .getElementsByClassName("cart-quantity-input")[0]
+      .addEventListener("change", quantityChanged);
+  });
+  updateCartTotal();
 }
 
 function quantityChanged(e) {

@@ -50,6 +50,7 @@ exports.getCart = (req, res, next) => {
           //   pageTitle: 'Your Cart',
           //   products: products
           // });
+          res.json({products});
         })
         .catch(err => console.log(err));
     })
