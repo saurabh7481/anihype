@@ -1,10 +1,40 @@
 const Product = require('../models/product');
 const Cart = require('../models/cart');
 
+const ITEM_PER_PAGE = 3;
+
 exports.getProducts = (req, res, next) => {
-  Product.findAll()
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || ITEM_PER_PAGE;
+
+  const startIdx = (page - 1)*limit;
+  const lastIdx = page * limit;
+
+  const result = {};
+
+  Product.findAll().then(products => {
+    if (lastIdx < products.length) {
+      result.next = {
+        page: page + 1,
+        limit: limit,
+      };
+    }
+    if (startIdx > 0) {
+      result.previous = {
+        page: page - 1,
+        limit: limit,
+      };
+    }
+  })
+
+  
+  Product.findAll({
+    offset: startIdx,
+    limit: limit
+  })
     .then(products => {
-      res.json({products});
+      result.products = products;
+      res.json({result});
     })
     .catch(err => {
       console.log(err);

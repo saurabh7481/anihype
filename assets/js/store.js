@@ -3,9 +3,26 @@ const productParent = document.getElementById("product-list");
 window.addEventListener("load", () => {
   axios
     .get("http://localhost:3000/products")
-    .then((products) => {
-      console.log(products.data.products);
-      products.data.products.forEach((product) => {
+    .then((data) => {
+      console.log(data);
+      renderProduct(data.data.result);
+      ready();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+function getPaginatedResult(page){
+    axios.get(`http://localhost:3000/products?page=${page}&limit=3`).then(data => {
+        console.log(data);
+        renderProduct(data.data.result);
+    })
+}
+
+function renderProduct(result) {
+    productParent.innerHTML = "";
+    result.products.forEach((product) => {
         const template = `
             <div class="col-md-4">
             <div class="product-item" id="product-${product.id}">
@@ -26,12 +43,18 @@ window.addEventListener("load", () => {
         productParent.innerHTML = productParent.innerHTML + template;
       });
 
-      ready();
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+      const pages = document.getElementById("pages");
+      let pagesTemplate = "";
+      console.log(result.previous, result.next);
+      if(result.previous){
+          pagesTemplate = `<span onclick=getPaginatedResult(${result.previous.page})>Previous</span>`
+      }
+      if(result.next){
+        pagesTemplate += `<span onclick=getPaginatedResult(${result.next.page})>Next</span>`
+      }
+
+      pages.innerHTML = pagesTemplate;
+}
 
 function ready() {
   const cartRemoveButton = document.getElementsByClassName("btn-remove");
