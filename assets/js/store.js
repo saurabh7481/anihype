@@ -1,4 +1,5 @@
 const productParent = document.getElementById("product-list");
+const notify = new Notify();
 
 window.addEventListener("load", () => {
   axios
@@ -93,10 +94,33 @@ function ready() {
   cancelCart[0].addEventListener("click", () => {
     document.querySelector("#cart").style = "display: none";
   });
+
+  const purchaseButton = document.getElementsByClassName("purchase-btn");
+  purchaseButton[0].addEventListener("click", purchase);
+}
+
+function purchase(e){
+    axios.get("http://localhost:3000/purchase").then(res => {
+        console.log(res);
+        notify.render({
+            head: "Success",
+            content: res.data.message,
+            style: "success",
+            delay: 2000,
+            corner: "bottom_right",
+          });
+    }).catch(err => {
+        notify.render({
+            head: "Oops",
+            content: err,
+            style: "error",
+            delay: 2000,
+            corner: "bottom_right",
+          });
+    })
 }
 
 function addToCart(e) {
-  const notify = new Notify();
   const id = e.target.parentNode.parentNode.id.split("-")[1];
   console.log(id);
   axios

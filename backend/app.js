@@ -10,6 +10,7 @@ const Product = require('./models/product');
 const User = require('./models/user');
 const Cart = require('./models/cart');
 const CartItem = require('./models/cart-item');
+const Order = require('./models/order');
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.set('views', 'views');
 
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
+const OrderItem = require('./models/order-item');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -43,6 +45,10 @@ User.hasOne(Cart);
 Cart.belongsTo(User);
 Cart.belongsToMany(Product, { through: CartItem });
 Product.belongsToMany(Cart, { through: CartItem });
+
+User.hasMany(Order);
+Order.belongsTo(User);
+Order.belongsToMany(Product, {through: OrderItem});
 
 sequelize
   .sync()

@@ -123,6 +123,26 @@ exports.postCart = (req, res, next) => {
     });
 };
 
+exports.postOrder = async (req, res, next) => {
+  try{
+    const cart = await req.user.getCart();
+    const products = await cart.getProducts();
+    const order = await req.user.createOrder();
+    await order.addProducts(products.map(product => {
+      product.orderItem = {
+        quantity: product.cartItem.quantity
+      }
+      return product;
+    }))
+
+    await cart.setProducts(null);
+    res.status(200).json({message: "Order placed!"})
+  } catch(err) {
+    res.status(500).json({err: err})
+  }
+
+}
+
 exports.postCartDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
   req.user
