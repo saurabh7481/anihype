@@ -3,7 +3,7 @@ const notify = new Notify();
 
 window.addEventListener("load", () => {
   axios
-    .get("http://localhost:3000/products")
+    .get("http://13.233.167.40:3000/products")
     .then((data) => {
       console.log(data);
       renderProduct(data.data.result);
@@ -15,7 +15,7 @@ window.addEventListener("load", () => {
 });
 
 function getPaginatedResult(page){
-    axios.get(`http://localhost:3000/products?page=${page}&limit=3`).then(data => {
+    axios.get(`http://13.233.167.40:3000/products?page=${page}&limit=3`).then(data => {
         console.log(data);
         renderProduct(data.data.result);
     })
@@ -79,7 +79,7 @@ function ready() {
   const sideCart = document.getElementsByClassName("cart-holder");
   sideCart[0].addEventListener("click", (e) => {
     axios
-      .get("http://localhost:3000/cart")
+      .get("http://13.233.167.40:3000/cart")
       .then((data) => {
         console.log(data.data);  
         addItemToCart(data.data);
@@ -100,7 +100,7 @@ function ready() {
 }
 
 function purchase(e){
-    axios.get("http://localhost:3000/purchase").then(res => {
+    axios.get("http://13.233.167.40:3000/purchase").then(res => {
         console.log(res);
         notify.render({
             head: "Success",
@@ -124,7 +124,7 @@ function addToCart(e) {
   const id = e.target.parentNode.parentNode.id.split("-")[1];
   console.log(id);
   axios
-    .post("http://localhost:3000/cart", { productId: id })
+    .post("http://13.233.167.40:3000/cart", { productId: id })
     .then((data) => {
       if (data.status === 200) {
         notify.render({
@@ -153,21 +153,12 @@ function addToCart(e) {
         corner: "bottom_right",
       });
     });
-  //   const Item = button.parentElement.parentElement;
-  //   const imageSrc = Item.getElementsByClassName("item-img")[0].src;
-
-  //   const itemInfo = button.parentElement;
-  //   const title = itemInfo.getElementsByClassName("item-title")[0].innerText;
-  //   const price = itemInfo.getElementsByClassName("item-price")[0].innerText;
-  //   addItemToCart(title, price, imageSrc);
-  //   updateCartTotal();
 }
 
 function addItemToCart(data) {
   const cartItems = document.getElementsByClassName("cart-items")[0];
   cartItems.innerHTML = "";
   data.products.forEach((product) => {
-    console.log(product);
     const cartRow = document.createElement("div");
     cartRow.classList.add("cart-row");  
     const cartRowContents = `

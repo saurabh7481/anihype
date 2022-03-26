@@ -1,7 +1,7 @@
 const orders = document.getElementById("content");
 
 window.addEventListener("load", () => {
-    axios.get("http://localhost:3000/orders").then(res => {
+    axios.get("http://13.233.167.40:3000/orders").then(res => {
         console.log(res);
         let template = "";
         res.data.data.forEach(order => {
