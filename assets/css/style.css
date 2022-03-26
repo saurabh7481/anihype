@@ -88,11 +88,11 @@ a.filled-button:hover {
 }
 
 .products-heading {
-	background-image: url(../images/products-heading.jpg);
+	background-image: url("https://cdn.pixabay.com/photo/2020/11/03/17/14/character-5710488_960_720.jpg");
 }
 
 .about-heading {
-	background-image: url(../images/about-heading.jpg);
+	background-image: url("https://cdn.pixabay.com/photo/2020/11/03/17/14/character-5710488_960_720.jpg");
 }
 
 .page-heading {
